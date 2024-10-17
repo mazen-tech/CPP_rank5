@@ -4,15 +4,14 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Forms
+NAME = Identify
 RM = rm -f
 
 # FLAGS
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # SOURCE FILES AND OBJECT FILES
-SRCS = src/Bureaucrat.cpp src/AForm.cpp src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp \
-		src/ShrubberyCreationForm.cpp src/main.cpp
+SRCS = src/A.cpp src/B.cpp src/C.cpp src/Base.cpp src/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # RULES

@@ -4,7 +4,7 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Operations
+NAME = Easyfind
 RM = rm -f
 
 # FLAGS

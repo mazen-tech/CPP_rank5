@@ -1,29 +1,32 @@
-#include "../header/iter.hpp"
 #include <iostream>
-#include <cstdlib>
-
-template<typename t>
-void display(t &element)
-{
-	std::cout << "The element's vlaue is: " << element << std::endl;
-}
-
-void setRandomValue(int &number)
-{
-	number = rand() % 100;
-}
+#include "../header/Span.hpp"
 
 int main()
 {
-	int test[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    Span test(6);
+    int num;
 
-	std::cout << "Display the array elements\n";
-	iter<int>(test, 10, &display);
+    std::cout << GREEN << "Pushing elements inside Span\n" << RESET;
+    for (int i = 5; i < 11; i++)
+    {
+        num = rand() % 50;
+        std::cout << "Pushing: " << num << std::endl;
+        test.addN(num);
+    }
 
-	std::cout << "\n";
-	std::cout << "Set Random Value and display \n";
-	iter<int>(test, 10, &setRandomValue);
-	iter<int>(test, 10, &display);
-
-
+    //testing the stage overflow
+    std::cout << std::endl;
+    std::cout << "####STORAGE TEST####" <<std::endl;
+    try
+    {
+        test.addN(42);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+    
+    std::cout << std::endl;
+    std::cout << GREEN << "Shortest span: " << RESET << test.s_short() << std::endl;
+    std::cout << GREEN << "Longest span: "  << RESET << test.s_long() << std::endl;
 }

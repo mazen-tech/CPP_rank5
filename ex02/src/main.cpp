@@ -1,50 +1,35 @@
-#include "../header/array.hpp"
 #include <iostream>
-#include <cstdlib>
-
+#include "../header/MutanStack.hpp"
 
 int main()
 {
-    try
+    MutanStack<int> mstack_test;
+
+    mstack_test.push(5);
+    mstack_test.push(17);
+
+    //std::cout << mstack_test.top() << std::endl;
+    //mstack_test.pop();
+    //std::cout << mstack_test.size() << std::endl;
+
+    std::cout << GREEN << "THE STACK ELEMENTS \n" << RESET;
+    mstack_test.push(3);
+    mstack_test.push(60);
+    mstack_test.push(789);
+    mstack_test.push(0);
+    
+    std::cout << "------------------\n";
+    MutanStack<int>::it test1 = mstack_test.begin();
+    MutanStack<int>::it test2 = mstack_test.end();
+    std::cout << RED << "Begin: " << *test1 << std::endl << RESET;
+    std::cout << RED <<"end: " << *test2 << std::endl << RESET;
+
+
+    while (test1 != test2)
     {
-        // Create an array of size 5 with default constructor
-        array<int> arr1(5);
-        
-        // Set values for the array using the [] operator
-        for (int i = 0; i < 5; i++)
-        {
-            arr1[i] = i * 10;
-        }
-
-        // Display the array using the overloaded << operator
-        std::cout << "arr1: " << arr1 << std::endl;
-
-        // Copy constructor test
-        array<int> arr2(arr1);
-        std::cout << "arr2 (copied from arr1): " << arr2 << std::endl;
-
-        // Assignment operator test
-        array<int> arr3;
-        arr3 = arr1;
-        std::cout << "arr3 (assigned from arr1): " << arr3 << std::endl;
-
-        // Access and modify array elements
-        arr1[2] = 999;
-        std::cout << "arr1 after modifying index 2: " << arr1 << std::endl;
-
-        // Size method test
-        std::cout << "Size of arr1: " << arr1.Size() << std::endl;
-
-        // Test out-of-bounds access
-        std::cout << "Trying to access arr1[10] (out-of-bounds):" << std::endl;
-        std::cout << arr1[10] << std::endl; // This should throw an exception
-
-    }
-    catch (const std::exception &e)
-    {
-        // Catch any exceptions thrown by the array class
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cout << *test1 << std::endl;
+        ++test1;
     }
 
-    return 0;
+    std::stack<int> s(mstack_test);
 }

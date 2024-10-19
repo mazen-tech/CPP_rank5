@@ -4,7 +4,7 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Array
+NAME = Stack
 RM = rm -f
 
 # FLAGS

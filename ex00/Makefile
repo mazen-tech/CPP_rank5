@@ -4,14 +4,14 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Interpreter
+NAME = Operations
 RM = rm -f
 
 # FLAGS
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # SOURCE FILES AND OBJECT FILES
-SRCS = src/Interpreter.cpp src/main.cpp
+SRCS = src/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # RULES

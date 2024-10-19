@@ -1,117 +1,50 @@
-#include "../header/A.hpp"
-#include "../header/B.hpp"
-#include "../header/C.hpp"
-
+#include "../header/array.hpp"
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 
-Base *generate(void)
+
+int main()
 {
-    int r;
-
-    r = rand() % 3; //to keep the rang in three
-    if (r == 0)
-        return (new B);
-    if (r == 1)
-        return (new A);
-    if (r == 2)
-        return (new C);
-
-    else 
-        return (NULL);
-}
-
-
-void identify(Base *p)
-{
-    if (dynamic_cast<A*>(p))//if P pointing to A print A etc ....
-        std::cout << "A\n";
-    else if (dynamic_cast<B*>(p))
-        std::cout << "B\n";
-    else if (dynamic_cast<C*>(p))
-        std::cout << "C\n";
-}
-
-void identify(Base &p)
-{
-    Base ptr;
     try
     {
-        ptr = dynamic_cast<A&>(p);
-        std::cout << "A\n";
+        // Create an array of size 5 with default constructor
+        array<int> arr1(5);
+        
+        // Set values for the array using the [] operator
+        for (int i = 0; i < 5; i++)
+        {
+            arr1[i] = i * 10;
+        }
+
+        // Display the array using the overloaded << operator
+        std::cout << "arr1: " << arr1 << std::endl;
+
+        // Copy constructor test
+        array<int> arr2(arr1);
+        std::cout << "arr2 (copied from arr1): " << arr2 << std::endl;
+
+        // Assignment operator test
+        array<int> arr3;
+        arr3 = arr1;
+        std::cout << "arr3 (assigned from arr1): " << arr3 << std::endl;
+
+        // Access and modify array elements
+        arr1[2] = 999;
+        std::cout << "arr1 after modifying index 2: " << arr1 << std::endl;
+
+        // Size method test
+        std::cout << "Size of arr1: " << arr1.Size() << std::endl;
+
+        // Test out-of-bounds access
+        std::cout << "Trying to access arr1[10] (out-of-bounds):" << std::endl;
+        std::cout << arr1[10] << std::endl; // This should throw an exception
+
     }
-    catch(const std::exception& e){ }
-    
-    try
+    catch (const std::exception &e)
     {
-        ptr = dynamic_cast<B&>(p);
-        std::cout << "B\n";
+        // Catch any exceptions thrown by the array class
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
-    catch(const std::exception& e){ }
 
-    try
-    {
-        ptr = dynamic_cast<C&>(p);
-        std::cout << "C\n";
-    }
-    catch(const std::exception& e){ }
-}
-
-
-int main ()
-{
-    Base *test;
-    
-    test = generate();
-    identify(test);
-    delete test;
-
-    test = generate();
-    identify(test);
-    delete test;
-
-    test = generate();
-    identify(test);
-    delete test;
-
-    test = generate();
-    identify(test);
-    delete test;
-
-    test = generate();
-    identify(test);
-    delete test;
-
-    test = generate();
-    identify(test);
-    delete test;
-
-    std::cout << "Identify with refrence\n";
-    test = generate();
-    identify(*test);
-    delete test;
-
-    test = generate();
-    identify(*test);
-    delete test;
-
-    test = generate();
-    identify(*test);
-    delete test;
-
-    test = generate();
-    identify(*test);
-    delete test;
-
-    test = generate();
-    identify(*test);
-    delete test;
-
-    test = generate();
-    identify(*test);
-    delete test;
-
-
-
+    return 0;
 }

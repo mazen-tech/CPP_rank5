@@ -4,7 +4,7 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = serialize
+NAME = Iter
 RM = rm -f
 
 # FLAGS

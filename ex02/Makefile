@@ -4,14 +4,14 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Identify
+NAME = Array
 RM = rm -f
 
 # FLAGS
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # SOURCE FILES AND OBJECT FILES
-SRCS = src/A.cpp src/B.cpp src/C.cpp src/Base.cpp src/main.cpp
+SRCS = src/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # RULES

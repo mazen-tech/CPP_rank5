@@ -1,36 +1,29 @@
-#include "../header/Data.hpp"
+#include "../header/iter.hpp"
+#include <iostream>
+#include <cstdlib>
 
-/*serialize, converts a pointer of type
- Data* to an unsigned integer type (uintptr_t) 
- using reinterpret_cast*/
-uintptr_t serialize(t_Data *ptr)
+template<typename t>
+void display(t &element)
 {
-    return (reinterpret_cast<uintptr_t>(ptr));
-    //converting from pointer to unsigned int using "reinterpret_cast"
-    /*NOTE## we were using static_cast<data type>(variable)
-    to convert from flout to double to int to char etc*/
+	std::cout << "The element's vlaue is: " << element << std::endl;
 }
 
-/*now doing the same but reversed from uintptr -> pointer*/
-t_Data *deserialize(uintptr_t rev)
+void setRandomValue(int &number)
 {
-    return (reinterpret_cast<t_Data *>(rev));
+	number = rand() % 100;
 }
 
 int main()
 {
-    
-    t_Data *ptr;
-    t_Data *test_ptr;
-    uintptr_t rev;
+	int test[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    ptr = new t_Data;
-    ptr->Data = "trolling on pointers";
+	std::cout << "Display the array elements\n";
+	iter<int>(test, 10, &display);
 
-    rev = serialize(ptr);
-    test_ptr = deserialize(rev);
+	std::cout << "\n";
+	std::cout << "Set Random Value and display \n";
+	iter<int>(test, 10, &setRandomValue);
+	iter<int>(test, 10, &display);
 
-    std::cout << "Data of ptr: " << ptr->Data << std::endl;
-    std::cout << "Data of test_ptr: " << test_ptr->Data << std::endl;
-    return (0);
+
 }

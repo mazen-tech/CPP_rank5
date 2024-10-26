@@ -4,14 +4,14 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Span
+NAME = RPN
 RM = rm -f
 
 # FLAGS
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # SOURCE FILES AND OBJECT FILES
-SRCS = src/main.cpp src/Span.cpp
+SRCS = scr/RPN.cpp scr/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # RULES

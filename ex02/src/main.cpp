@@ -1,35 +1,57 @@
+#include "../header/PmergeMe.hpp"
 #include <iostream>
-#include "../header/MutanStack.hpp"
+#include <chrono>
+#include <vector>
+#include <list>
+#include <sstream>
 
-int main()
+/*int main(int argc, char **argv)
 {
-    MutanStack<int> mstack_test;
+    PmergeMe test;
 
-    mstack_test.push(5);
-    mstack_test.push(17);
+    // Validate input arguments
+    if (!test.validateInput(argc, argv))
+        return 1;
+    std::vector<int> unsorted = test.parseArg(argc, argv);
+    // Print unsorted sequence
+    test.printUnsortedSeq(unsorted);
 
-    //std::cout << mstack_test.top() << std::endl;
-    //mstack_test.pop();
-    //std::cout << mstack_test.size() << std::endl;
+    // Measure the time needed for sorting and print after sorting 
+    auto start = std::chrono::high_resolution_clock::now();
+    test.mergeInsertSortV(unsorted);
+    auto end = std::chrono::high_resolution_clock::now();
+    test.printSortedSeq(unsorted);
+    test.printTime(start, end, "vector");
 
-    std::cout << GREEN << "THE STACK ELEMENTS \n" << RESET;
-    mstack_test.push(3);
-    mstack_test.push(60);
-    mstack_test.push(789);
-    mstack_test.push(0);
-    
-    std::cout << "------------------\n";
-    MutanStack<int>::it test1 = mstack_test.begin();
-    MutanStack<int>::it test2 = mstack_test.end();
-    std::cout << RED << "Begin: " << *test1 << std::endl << RESET;
-    std::cout << RED <<"end: " << *test2 << std::endl << RESET;
+    return 0;
+}*/
 
 
-    while (test1 != test2)
+#include "../header/PmergeMe.hpp"
+#include <sstream>
+
+int main(int argc, char **argv)
+{
+    PmergeMe test;
+
+    if (argc < 2)
     {
-        std::cout << *test1 << std::endl;
-        ++test1;
+        std::cerr << "Error: not valid number of arguments" << std::endl;
+        return 1;
     }
 
-    std::stack<int> s(mstack_test);
+    std::string input;
+    for (int i = 1; i < argc; ++i)
+    {
+        input += argv[i];
+        if (i < argc - 1) input += " ";
+    }
+    std::vector<int> unsorted = test.parseArgString(input);
+
+    test.printUnsortedSeq(unsorted);
+    test.mergeInsertSortV(unsorted);
+    test.printSortedSeq(unsorted);
+
+    return 0;
 }
+

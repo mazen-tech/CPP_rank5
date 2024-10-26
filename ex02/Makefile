@@ -4,14 +4,14 @@ GREEN	= "\033[32m"
 
 # MAIN
 CXX = c++
-NAME = Stack
+NAME = PmergeMe
 RM = rm -f
 
 # FLAGS
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 # SOURCE FILES AND OBJECT FILES
-SRCS = src/main.cpp
+SRCS = src/PmergeMe.cpp src/main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # RULES

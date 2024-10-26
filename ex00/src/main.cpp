@@ -1,54 +1,48 @@
-#include <vector>
-#include <deque>
-#include <list>
-#include <set>
-#include <iostream>
-#include "../header/easyfind.hpp"
+#include "../header/BitcoinExchange.hpp"
 
-int main ()
+int main(int ac, char **av)
 {
-    std::set<int> test_set;
-    std::deque<int> test_deque;
-    std::list<int> test_list;
-    std::vector<int> test_vector;
-
-    for (int i = 0; i < 5; i++)
-    {
-        test_set.insert(i);
-        test_deque.push_front(i);
-        test_list.push_back(i);
-    }
-
-    for (int i = 5; i < 11; i++)
-        test_vector.push_back(i);
-
-    /*testing with set*/
-    std::cout << GREEN << "##TESTING EASYFIND WITH SET##\n" << RESET;
-    for(std::set<int>::iterator it = test_set.begin();  it != test_set.end(); it++)
-    {
-        std::cout << "{" ;
-        std::cout << ' ' << *it;
-        std::cout << " }";
-    }
-    std::set<int>::iterator set_it = easyfind(test_set, 0);
-    std::cout << "\nFound: " << *set_it << " followed by " << *(++set_it) << std::endl;
-
-    std::set<int>::iterator set_it02 = easyfind(test_set, 2);
-    std::cout << "\nFound: " << *set_it02 << " followe by " << *(++set_it02) << " and proceded by " << *(----set_it02) << std::endl; 
-
-
-    std::cout << GREEN << "##TESTING EASYFIND WITH VECTOR##\n" << RESET;
-    for (std::vector<int>::iterator it = test_vector.begin(); it != test_vector.end(); it++)
-    {
-        std::cout << "{" ;
-        std::cout << ' ' << *it;
-        std::cout << " }";
-    }
     
-    std::vector<int>::iterator vector_it = easyfind(test_vector, 7);
-    std::cout << "\nFound: " << *vector_it << " followed by " << *(++vector_it) << std::endl;
+    if (ac != 2)
+    {
+        std::cout << RED << "Invalid number of arguments ./btc [InputFile.txt]\n" << RESET;
+        return 1;
+    }
 
-    std::vector<int>::iterator vector_it02 = easyfind(test_vector, 9);
-    std::cout << "\nFound: " << *vector_it02 << " followed by " << *(++vector_it02) << " and proceded by " << *(----vector_it02) << std::endl;
+    std::cout << GREEN << "#########################\n";
+    std::cout << GREEN << "#                       #\n";
+    std::cout << GREEN << "#   BIT COIN EXCHANGE   #\n";
+    std::cout << GREEN << "#                       #\n";
+    std::cout << GREEN << "#########################\n" << RESET;
+    std::cout << std::endl;
+    BitcoinExchange test;
+    test.processInput(av[1]);
 
+
+    /*
+    //######## Example on ss() functionality and how we can use it diffrently ##########//
+    std::stringstream ss(av[1]);
+    std::string first_name;
+    std::string second_name;
+    std::string date_birth;
+    double salary;
+
+    if (getline(ss, first_name, ' '))
+    {
+        ss >> second_name;
+        ss >> date_birth;
+        ss >> salary;
+
+        if (ss.fail())
+        {
+            std::cerr << "ss failed" << std::endl;
+            return 1;
+        }
+    }
+
+    std::cout << "first name: " << first_name << std::endl;
+    std::cout << "second name: " << second_name << std::endl;
+    std::cout << "date of birth: " << date_birth << std::endl;
+    std::cout << "salary: " << salary << std::endl;
+    */
 }
